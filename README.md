@@ -8,3 +8,9 @@ IPL is one of the most popular cricket leagues in the world. In this project, I 
    The dataset available contains ball-by-ball information, hence I have performed the required preprocessing to extract the exact variables that can be used by our model. I have tried different ML algorithms from linear regression to xgboost in this project.
    
    Website link: https://ipl-predictions-2021.herokuapp.com/
+   
+   
+
+## Preview:
+![image](https://user-images.githubusercontent.com/62956111/173411024-1bc313e1-c6e8-45f6-beb5-20a3ac76236e.png)
+
