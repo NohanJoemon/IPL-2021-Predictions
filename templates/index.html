@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Powerplay Prediction</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mystyle.css') }}"/>
+</head>
+
+
+<body>
+    <div class="center-container">
+        <p><h1>
+            <span class="iconify" data-icon="mdi:cricket"></span>
+            IPL 2021 Powerplay prediction
+        </h1></p>
+    
+            <img class="mainimage" src="{{ url_for('static', filename='mainimg.png') }}">
+        
+            <h2>
+                About the project:
+            </h2>
+
+
+            <h2>
+                Test using your inputs (choose from 1st leg matches of IPL 2021):
+            </h2>
+
+                <form action="/#predictions" method="POST">
+
+                    <!-- Venue -->
+                    <label for="venue">Venue:</label>
+                    <select name="venue" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for v in venues %}
+                                <option value="{{v}}">{{v}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.venue}}">{{selected.venue}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                    <!-- Innings-->
+                    <label for="innings">Innings:</label>
+                    <select name="innings" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for i in [1,2] %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.innings}}">{{selected.innings}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                    <!-- Batting team -->
+                    <label for="batteam">Batting Team:</label>
+                    <select name="batteam" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for t in teams %}
+                                <option value="{{t}}">{{t}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.batting_team}}">{{selected.batting_team}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                    <!-- Bowling team -->
+                    <label for="bowlteam">Bowling Team:</label>
+                    <select name="bowlteam" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for t in teams %}
+                                <option value="{{t}}">{{t}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.bowling_team}}">{{selected.bowling_team}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                    <!-- Num batsmen -->
+                    <label for="nbat">No. of players who batted in the powerplay:</label>
+                    <select name="nbat" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for i in range(2,12) %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.NumBatsmen}}">{{selected.NumBatsmen}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                    <!-- Num bowlers -->
+                    <label for="nbowl">No. of players who bowled in the powerplay:</label>
+                    <select name="nbowl" method="GET" action="/">
+                        {% if selected == None %}
+                            {% for i in range(2,7) %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{selected.NumBowlers}}">{{selected.NumBowlers}}</option>"
+                        {%endif%}
+                    </select>
+                    <br>
+
+                {%if selected==None%}   
+                <center><input class="submit-btn" type="submit" value="Predict the powerplay score"></center>
+                 {%else%}
+                 <center> <a href="/"><input class="submit-btn" value="Try another input"></input></a></center>
+                 {%endif%}
+                </form>
+            {% if preds %}
+            <div id="#predictions">
+                <h2>
+                    Predictions:
+                </h2>
+                <h3>
+                <table>
+                    <tr>
+                        <th>Model</th>
+                        <th>Prediction (runs)</th>
+                    </tr>
+                    {% for i in range(preds|length)%}
+                    <tr>
+                        <td>{{model_hashtable[i+1]}}</td>
+                        <td>{{preds[i]}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+                </h3>
+            </div>
+            {%endif%}
+    </div>
+    
+
+
+</body>
+
+
+</html>
