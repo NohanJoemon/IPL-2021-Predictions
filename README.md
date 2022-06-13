@@ -12,5 +12,5 @@ IPL is one of the most popular cricket leagues in the world. In this project, I 
    
 
 ## Preview:
-![image](https://user-images.githubusercontent.com/62956111/173411024-1bc313e1-c6e8-45f6-beb5-20a3ac76236e.png)
+![image](https://user-images.githubusercontent.com/62956111/173411115-65f607bd-afbe-4538-bb73-c1c67aea2ca2.png)
 
